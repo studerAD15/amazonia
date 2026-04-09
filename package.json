@@ -1,0 +1,44 @@
+{
+    "name":  "login-formm",
+    "private":  true,
+    "version":  "3.0.0",
+    "type":  "module",
+    "scripts":  {
+                    "dev":  "vite --config client/vite.config.js",
+                    "server":  "node server/index.js",
+                    "server:dev":  "node server/index.js",
+                    "server:":  "npm run server:dev",
+                    "dev:full":  "concurrently \"npm run server:dev\" \"npm run dev\"",
+                    "build":  "vite build --config client/vite.config.js",
+                    "preview":  "vite preview --config client/vite.config.js"
+                },
+    "dependencies":  {
+                         "@emotion/react":  "^11.14.0",
+                         "@emotion/styled":  "^11.14.1",
+                         "@hookform/resolvers":  "^3.9.1",
+                         "@mui/icons-material":  "^5.18.0",
+                         "@mui/material":  "^5.18.0",
+                         "axios":  "^1.8.4",
+                         "bcryptjs":  "^2.4.3",
+                         "cors":  "^2.8.5",
+                         "dotenv":  "^16.5.0",
+                         "express":  "^4.21.2",
+                         "express-mongo-sanitize":  "^2.2.0",
+                         "express-rate-limit":  "^7.5.0",
+                         "helmet":  "^8.1.0",
+                         "jsonwebtoken":  "^9.0.2",
+                         "mongoose":  "^8.13.2",
+                         "react":  "^18.3.1",
+                         "react-dom":  "^18.3.1",
+                         "react-hook-form":  "^7.53.0",
+                         "react-router-dom":  "^6.30.0",
+                         "recharts":  "^2.15.1",
+                         "yup":  "^1.6.1"
+                     },
+    "devDependencies":  {
+                            "@vitejs/plugin-react":  "^4.3.4",
+                            "concurrently":  "^9.1.2",
+                            "nodemon":  "^3.1.9",
+                            "vite":  "^5.4.10"
+                        }
+}
