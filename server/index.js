@@ -318,16 +318,25 @@ app.patch("/api/admin/users/:id/role", verifyToken, checkRole(["admin"]), async 
 });
 
 app.patch("/api/admin/users/:id/deactivate", verifyToken, checkRole(["admin"]), async (req, res) => {
+  const { isActive } = req.body || {};
+  const nextStatus = typeof isActive === "boolean" ? isActive : false;
+
   if (useMemoryStore) {
     const user = memoryUsers.find((u) => String(u.id) === String(req.params.id));
     if (!user) return res.status(404).json({ message: "User not found." });
-    user.isActive = false;
-    return res.json({ message: "User deactivated.", user: safeUser(user) });
+    user.isActive = nextStatus;
+    return res.json({
+      message: nextStatus ? "User activated." : "User deactivated.",
+      user: safeUser(user)
+    });
   }
 
-  const user = await User.findByIdAndUpdate(req.params.id, { isActive: false }, { new: true });
+  const user = await User.findByIdAndUpdate(req.params.id, { isActive: nextStatus }, { new: true });
   if (!user) return res.status(404).json({ message: "User not found." });
-  return res.json({ message: "User deactivated.", user: safeUser(user) });
+  return res.json({
+    message: nextStatus ? "User activated." : "User deactivated.",
+    user: safeUser(user)
+  });
 });
 
 app.delete("/api/admin/users/:id", verifyToken, checkRole(["admin"]), async (req, res) => {
